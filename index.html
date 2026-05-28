@@ -19,12 +19,12 @@ viewport-fit=cover
 
 :root{
 --bg:#000;
---card:#151515;
---active:#1890ff;
+--card:#141414;
+--active:#1e90ff;
 --text:#ffffff;
 --sub:#777;
 --orange:#ff9c2f;
---green:#52c41a;
+--green:#63ff63;
 }
 
 *{
@@ -62,7 +62,9 @@ position:fixed;
 inset:0;
 }
 
-/* ===== 主畫面 ===== */
+/* =====================
+主畫面
+===================== */
 
 .app{
 
@@ -77,13 +79,15 @@ padding:8px;
 overflow:hidden;
 }
 
-/* ===== 標題 ===== */
+/* =====================
+標題
+===================== */
 
 .top{
 
 text-align:center;
 
-font-size:14px;
+font-size:13px;
 font-weight:700;
 
 color:var(--orange);
@@ -92,11 +96,14 @@ margin-top:2px;
 margin-bottom:6px;
 }
 
-/* ===== 輸入區 ===== */
+/* =====================
+X Z
+===================== */
 
 .input-area{
 
 display:flex;
+
 gap:6px;
 
 margin-bottom:6px;
@@ -110,7 +117,7 @@ background:var(--card);
 
 border-radius:16px;
 
-padding:8px 4px;
+padding:7px 4px;
 
 text-align:center;
 
@@ -125,10 +132,10 @@ border-color:var(--active);
 
 .label{
 
-font-size:11px;
+font-size:10px;
 color:var(--sub);
 
-margin-bottom:2px;
+margin-bottom:1px;
 }
 
 .value{
@@ -136,20 +143,22 @@ margin-bottom:2px;
 font-size:30px;
 font-weight:900;
 
-line-height:1.1;
+line-height:1;
 
 font-variant-numeric:tabular-nums;
 }
 
-/* ===== OFFSET ===== */
+/* =====================
+OFFSET
+===================== */
 
 .offset-box{
 
-background:#1c1c1c;
+background:#1a1a1a;
 
 border-radius:16px;
 
-padding:8px;
+padding:7px;
 
 text-align:center;
 
@@ -164,10 +173,10 @@ border-color:var(--active);
 
 .offset-label{
 
-font-size:11px;
+font-size:10px;
 color:var(--orange);
 
-margin-bottom:2px;
+margin-bottom:1px;
 }
 
 .offset-value{
@@ -178,7 +187,9 @@ font-weight:900;
 line-height:1;
 }
 
-/* ===== 結果 ===== */
+/* =====================
+結果
+===================== */
 
 .result{
 
@@ -189,14 +200,14 @@ flex-direction:column;
 
 justify-content:center;
 
-gap:8px;
+gap:6px;
 }
 
 .result-row{
 
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 
 background:#101010;
 
@@ -205,13 +216,15 @@ padding:10px 14px;
 border-radius:16px;
 }
 
-.result-name{
+.result-left{
 
-font-size:15px;
+font-size:14px;
 color:#999;
+
+font-weight:600;
 }
 
-.result-value{
+.result-right{
 
 font-size:34px;
 font-weight:900;
@@ -223,32 +236,36 @@ color:var(--green);
 font-variant-numeric:tabular-nums;
 }
 
-/* ===== 按鈕 ===== */
+/* =====================
+按鈕
+===================== */
 
 .buttons{
 
 display:flex;
-justify-content:center;
 
 gap:10px;
 
-margin-top:4px;
+margin-top:6px;
 }
+
+/* ===== 按鈕放大 ===== */
 
 .btn{
 
-width:90px;
-height:54px;
+flex:1;
+
+height:68px;
 
 border:none;
 
-border-radius:16px;
+border-radius:20px;
 
-background:#202020;
+background:#2a2a2a;
 
 color:#fff;
 
-font-size:30px;
+font-size:42px;
 font-weight:900;
 
 transition:.06s;
@@ -256,12 +273,14 @@ transition:.06s;
 
 .btn:active{
 
-transform:scale(.94);
+transform:scale(.95);
 
-background:#333;
+background:#3b3b3b;
 }
 
-/* ===== 編輯提示 ===== */
+/* =====================
+編輯提示
+===================== */
 
 .editing{
 
@@ -271,13 +290,12 @@ font-size:11px;
 
 color:#666;
 
-margin-top:6px;
-margin-bottom:2px;
+margin-top:5px;
 }
 
 .editing span{
 
-color:#1890ff;
+color:#1e90ff;
 font-weight:bold;
 }
 
@@ -287,6 +305,8 @@ font-weight:bold;
 <body>
 
 <div class="app">
+
+<!-- 標題 -->
 
 <div class="top">
 拋光補正
@@ -303,7 +323,7 @@ X
 </div>
 
 <div class="value" id="xVal">
-67
+-37
 </div>
 
 </div>
@@ -342,24 +362,24 @@ OFFSET
 
 <div class="result-row">
 
-<div class="result-name">
+<div class="result-left">
 X1
 </div>
 
-<div class="result-value" id="x1Val">
-244
+<div class="result-right" id="x1Val">
+-161
 </div>
 
 </div>
 
 <div class="result-row">
 
-<div class="result-name">
+<div class="result-left">
 Z1
 </div>
 
-<div class="result-value" id="z1Val">
--222
+<div class="result-right" id="z1Val">
+-265
 </div>
 
 </div>
@@ -380,28 +400,32 @@ Z1
 
 </div>
 
+<!-- 目前編輯 -->
+
 <div class="editing">
 編輯：
-<span id="editingText">X</span>
+<span id="editingText">
+X
+</span>
 </div>
 
 </div>
 
 <script>
 
-/* =========================
+/* =====================
 資料
-========================= */
+===================== */
 
-let x = 67;
+let x = -37;
 let z = -61;
 let offset = 239;
 
 let current = "x";
 
-/* =========================
+/* =====================
 DOM
-========================= */
+===================== */
 
 const xVal =
 document.getElementById("xVal");
@@ -421,9 +445,9 @@ document.getElementById("z1Val");
 const editingText =
 document.getElementById("editingText");
 
-/* =========================
+/* =====================
 更新畫面
-========================= */
+===================== */
 
 function updateUI(){
 
@@ -465,9 +489,9 @@ z1Val.textContent = z1;
 
 }
 
-/* =========================
-欄位選擇
-========================= */
+/* =====================
+清除選取
+===================== */
 
 function clearActive(){
 
@@ -484,6 +508,10 @@ document
 .classList.remove("active");
 
 }
+
+/* =====================
+選擇欄位
+===================== */
 
 function selectField(name){
 
@@ -517,9 +545,9 @@ document
 
 }
 
-/* =========================
+/* =====================
 數值變更
-========================= */
+===================== */
 
 function addValue(v){
 
@@ -545,9 +573,9 @@ updateUI();
 
 }
 
-/* =========================
-點擊切換欄位
-========================= */
+/* =====================
+切換欄位
+===================== */
 
 document
 .getElementById("xBox")
@@ -573,10 +601,10 @@ selectField("offset");
 
 };
 
-/* =========================
-單擊按鈕
-只會 ±1
-========================= */
+/* =====================
+單擊
+只 ±1
+===================== */
 
 document
 .getElementById("plusBtn")
@@ -584,7 +612,11 @@ document
 "click",
 ()=>{
 
+if(!holding){
+
 addValue(1);
+
+}
 
 }
 );
@@ -595,15 +627,21 @@ document
 "click",
 ()=>{
 
+if(!holding){
+
 addValue(-1);
+
+}
 
 }
 );
 
-/* =========================
-長按加速
+/* =====================
+長按
 每次 ±10
-========================= */
+===================== */
+
+let holding = false;
 
 function enableHold(id, delta){
 
@@ -612,41 +650,44 @@ document.getElementById(id);
 
 let holdTimer;
 let repeatTimer;
-let isHolding = false;
-
-/* ===== 開始 ===== */
 
 btn.addEventListener(
 "pointerdown",
 ()=>{
 
-isHolding = false;
+holding = false;
 
-/* ===== 超過 500ms 才進入長按 ===== */
+/* ===== 超過 450ms 才進入長按 ===== */
 
 holdTimer = setTimeout(()=>{
 
-isHolding = true;
+holding = true;
 
-/* ===== 長按後每次 ±10 ===== */
+/* ===== 長按開始 ===== */
 
 repeatTimer = setInterval(()=>{
 
 addValue(delta * 10);
 
-},80);
+},70);
 
-},500);
+},450);
 
 }
 );
-
-/* ===== 放開 ===== */
 
 function stop(){
 
 clearTimeout(holdTimer);
 clearInterval(repeatTimer);
+
+/* ===== 防止 click 馬上觸發 ===== */
+
+setTimeout(()=>{
+
+holding = false;
+
+},50);
 
 }
 
@@ -659,10 +700,9 @@ btn.addEventListener("pointercancel",stop);
 enableHold("plusBtn",1);
 enableHold("minusBtn",-1);
 
-/* =========================
+/* =====================
 Galaxy Watch 錶框旋轉
-Watch8 Classic 可用
-========================= */
+===================== */
 
 window.addEventListener(
 "rotarydetent",
@@ -671,17 +711,11 @@ function(e){
 const direction =
 e.detail.direction;
 
-/* ===== 順時針 ===== */
-
 if(direction === "CW"){
 
 addValue(1);
 
-}
-
-/* ===== 逆時針 ===== */
-
-else{
+}else{
 
 addValue(-1);
 
@@ -690,9 +724,9 @@ addValue(-1);
 }
 );
 
-/* =========================
+/* =====================
 初始化
-========================= */
+===================== */
 
 updateUI();
 
