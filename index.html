@@ -21,7 +21,7 @@ viewport-fit=cover
 --bg:#000;
 --card:#141414;
 --active:#1e90ff;
---text:#ffffff;
+--text:#fff;
 --sub:#777;
 --orange:#ff9c2f;
 --green:#63ff63;
@@ -45,7 +45,6 @@ sans-serif;
 
 html,
 body{
-
 width:100%;
 height:100%;
 
@@ -62,9 +61,7 @@ position:fixed;
 inset:0;
 }
 
-/* =====================
-主畫面
-===================== */
+/* ===================== */
 
 .app{
 
@@ -79,9 +76,7 @@ padding:8px;
 overflow:hidden;
 }
 
-/* =====================
-標題
-===================== */
+/* ===================== */
 
 .top{
 
@@ -96,9 +91,7 @@ margin-top:2px;
 margin-bottom:6px;
 }
 
-/* =====================
-X Z
-===================== */
+/* ===================== */
 
 .input-area{
 
@@ -148,9 +141,7 @@ line-height:1;
 font-variant-numeric:tabular-nums;
 }
 
-/* =====================
-OFFSET
-===================== */
+/* ===================== */
 
 .offset-box{
 
@@ -187,44 +178,42 @@ font-weight:900;
 line-height:1;
 }
 
-/* =====================
-結果
-===================== */
+/* ===================== */
+/* 結果改成單行 */
+/* ===================== */
 
 .result{
-
-flex:1;
 
 display:flex;
 flex-direction:column;
 
-justify-content:center;
-
 gap:6px;
+
+margin-bottom:10px;
 }
 
 .result-row{
 
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 
 background:#101010;
 
-padding:10px 14px;
+padding:12px 16px;
 
 border-radius:16px;
 }
 
-.result-left{
+.result-name{
 
-font-size:14px;
-color:#999;
+font-size:18px;
+font-weight:700;
 
-font-weight:600;
+color:#aaa;
 }
 
-.result-right{
+.result-value{
 
 font-size:34px;
 font-weight:900;
@@ -236,36 +225,36 @@ color:var(--green);
 font-variant-numeric:tabular-nums;
 }
 
-/* =====================
-按鈕
-===================== */
+/* ===================== */
+/* 按鈕放更大更高 */
+/* ===================== */
 
 .buttons{
 
 display:flex;
 
-gap:10px;
+gap:12px;
 
-margin-top:6px;
+margin-top:auto;
+
+padding-bottom:8px;
 }
-
-/* ===== 按鈕放大 ===== */
 
 .btn{
 
 flex:1;
 
-height:68px;
+height:82px;
 
 border:none;
 
-border-radius:20px;
+border-radius:24px;
 
-background:#2a2a2a;
+background:#2b2b2b;
 
 color:#fff;
 
-font-size:42px;
+font-size:46px;
 font-weight:900;
 
 transition:.06s;
@@ -278,9 +267,7 @@ transform:scale(.95);
 background:#3b3b3b;
 }
 
-/* =====================
-編輯提示
-===================== */
+/* ===================== */
 
 .editing{
 
@@ -305,8 +292,6 @@ font-weight:bold;
 <body>
 
 <div class="app">
-
-<!-- 標題 -->
 
 <div class="top">
 拋光補正
@@ -362,11 +347,11 @@ OFFSET
 
 <div class="result-row">
 
-<div class="result-left">
+<div class="result-name">
 X1
 </div>
 
-<div class="result-right" id="x1Val">
+<div class="result-value" id="x1Val">
 -161
 </div>
 
@@ -374,11 +359,11 @@ X1
 
 <div class="result-row">
 
-<div class="result-left">
+<div class="result-name">
 Z1
 </div>
 
-<div class="result-right" id="z1Val">
+<div class="result-value" id="z1Val">
 -265
 </div>
 
@@ -400,7 +385,7 @@ Z1
 
 </div>
 
-<!-- 目前編輯 -->
+<!-- 編輯欄位 -->
 
 <div class="editing">
 編輯：
@@ -413,9 +398,7 @@ X
 
 <script>
 
-/* =====================
-資料
-===================== */
+/* ===================== */
 
 let x = -37;
 let z = -61;
@@ -423,9 +406,7 @@ let offset = 239;
 
 let current = "x";
 
-/* =====================
-DOM
-===================== */
+/* ===================== */
 
 const xVal =
 document.getElementById("xVal");
@@ -445,9 +426,7 @@ document.getElementById("z1Val");
 const editingText =
 document.getElementById("editingText");
 
-/* =====================
-更新畫面
-===================== */
+/* ===================== */
 
 function updateUI(){
 
@@ -459,7 +438,7 @@ offsetVal.textContent = offset;
 editingText.textContent =
 current.toUpperCase();
 
-/* ===== 原始補正公式 ===== */
+/* ===== 原始公式 ===== */
 
 const r =
 Math.sqrt(
@@ -489,9 +468,7 @@ z1Val.textContent = z1;
 
 }
 
-/* =====================
-清除選取
-===================== */
+/* ===================== */
 
 function clearActive(){
 
@@ -508,10 +485,6 @@ document
 .classList.remove("active");
 
 }
-
-/* =====================
-選擇欄位
-===================== */
 
 function selectField(name){
 
@@ -545,37 +518,27 @@ document
 
 }
 
-/* =====================
-數值變更
-===================== */
+/* ===================== */
 
 function addValue(v){
 
 if(current === "x"){
-
 x += v;
-
 }
 
 if(current === "z"){
-
 z += v;
-
 }
 
 if(current === "offset"){
-
 offset += v;
-
 }
 
 updateUI();
 
 }
 
-/* =====================
-切換欄位
-===================== */
+/* ===================== */
 
 document
 .getElementById("xBox")
@@ -601,10 +564,9 @@ selectField("offset");
 
 };
 
-/* =====================
-單擊
-只 ±1
-===================== */
+/* ===================== */
+/* 單擊 ±1 */
+/* ===================== */
 
 document
 .getElementById("plusBtn")
@@ -636,10 +598,9 @@ addValue(-1);
 }
 );
 
-/* =====================
-長按
-每次 ±10
-===================== */
+/* ===================== */
+/* 長按 ±10 */
+/* ===================== */
 
 let holding = false;
 
@@ -657,13 +618,9 @@ btn.addEventListener(
 
 holding = false;
 
-/* ===== 超過 450ms 才進入長按 ===== */
-
 holdTimer = setTimeout(()=>{
 
 holding = true;
-
-/* ===== 長按開始 ===== */
 
 repeatTimer = setInterval(()=>{
 
@@ -680,8 +637,6 @@ function stop(){
 
 clearTimeout(holdTimer);
 clearInterval(repeatTimer);
-
-/* ===== 防止 click 馬上觸發 ===== */
 
 setTimeout(()=>{
 
@@ -700,9 +655,9 @@ btn.addEventListener("pointercancel",stop);
 enableHold("plusBtn",1);
 enableHold("minusBtn",-1);
 
-/* =====================
-Galaxy Watch 錶框旋轉
-===================== */
+/* ===================== */
+/* 錶框旋轉 */
+/* ===================== */
 
 window.addEventListener(
 "rotarydetent",
@@ -724,9 +679,7 @@ addValue(-1);
 }
 );
 
-/* =====================
-初始化
-===================== */
+/* ===================== */
 
 updateUI();
 
